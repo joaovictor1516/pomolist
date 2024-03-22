@@ -2,8 +2,10 @@
 import { useState } from "react";
 import "tailwindcss/tailwind.css";
 
-export function Clock(){
+export function Header(){
     return(
-        <div className=""></div>
+        <div className="">
+            
+        </div>
     )
 }
