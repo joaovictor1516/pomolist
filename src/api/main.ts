@@ -42,7 +42,8 @@ export class TodoList extends Task{
         this.list = list;
         this.idTodoList = idTodoList;
         const task = new Task(id, title, content, completed, todoListMember, todoListPropriets);
-        this.addTask(task);
+        const createdTask = task.creatTask();
+        this.addTask(createdTask);
     }
 
     addTask(task: TaskElement){
