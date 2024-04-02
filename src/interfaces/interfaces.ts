@@ -1,9 +1,10 @@
-export interface Task{
+export interface TaskElement{
     id: string;
+    title: string;
     content: string;
-    complet: boolean;
+    completed: boolean;
     todoListMember: boolean;
-    todoListPropriets: TodoListElement | undefined; //caso seja membro de uma todo-list recebera as propriedades dos elementos de uma todo-list, como por exemplo a informacao de quando esta programado para esta task ser colocada no clock do pomodoro. 
+    todoListPropriets?: TodoListElement[]; //caso seja membro de uma todo-list recebera as propriedades dos elementos de uma todo-list, como por exemplo a informacao de quando esta programado para esta task ser colocada no clock do pomodoro. 
 };
 
 export interface TodoListElement{
