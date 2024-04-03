@@ -9,6 +9,7 @@ export interface TaskElement{
 
 export interface TodoListElement{
     id: string;
+    tasks: TaskElement[];
     completed: boolean;
 };
 
