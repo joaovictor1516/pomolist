@@ -33,20 +33,30 @@ export class Task{
     };
 };
 
-export class TodoList extends Task{
-    list: TodoListElement[];
+export class TodoList{
+    TodoLists: TodoListElement[];
     idTodoList: string;
 
-    constructor(idTodoList: string, list: TodoListElement[], id: string, title: string, content: string, completed: boolean, todoListMember: boolean, todoListPropriets: TodoListElement[]){
-        super(id, title, content, completed, todoListMember, todoListPropriets);
-        this.list = list;
+    constructor(idTodoList: string, list: TodoListElement[]){
+        this.TodoLists = list;
         this.idTodoList = idTodoList;
-        const task = new Task(id, title, content, completed, todoListMember, todoListPropriets);
-        const createdTask = task.creatTask();
-        this.addTask(createdTask);
-    }
+    };
 
-    addTask(task: TaskElement){
-        this.list.push(task);
-    }
+    addTask(idTodoList: string, task: TaskElement){
+        const todoListSelected = this.TodoLists.filter((todoList: TodoListElement) => {
+            todoList.id === idTodoList;
+        });
+    };
+
+    removeTask(idTodoList: string, idTask: string){
+        const todoListSelected = this.TodoLists.filter((todoList: TodoListElement) => {
+            todoList.id === idTodoList;
+        });
+
+
+    };
+
+    changeTaskContent(idTodoList: string, idTask: string, content: string){
+        
+    }   
 }
