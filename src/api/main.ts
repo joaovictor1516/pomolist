@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { TodoListElement, TaskElement } from "../interfaces/interfaces";
 
 export class Task{
-    id: string;
+    idTask: string;
     title: string;
     content: string;
     completed: boolean;
@@ -10,8 +10,8 @@ export class Task{
     todoListPropriets: TodoListElement[];
     
 
-    constructor(id: string, title: string, content: string, completed: boolean, todoListMember: boolean, todoListPropriets: TodoListElement[]){
-        this.id = id;
+    constructor(idTask: string, title: string, content: string, completed: boolean, todoListMember: boolean, todoListPropriets: TodoListElement[]){
+        this.idTask = idTask;
         this.title = title;
         this.content = content;
         this.completed = completed;
@@ -21,7 +21,7 @@ export class Task{
 
     creatTask(): TaskElement{
         const task: TaskElement = {
-            id: this.id,
+            id: this.idTask,
             title: this.title,
             content: this.content,
             completed: this.completed,
@@ -31,6 +31,14 @@ export class Task{
 
         return task;
     };
+
+    deleteTask(idTask: string){
+
+    };
+
+    editTask(idTask: string){
+
+    }
 };
 
 export class TodoList{
@@ -42,21 +50,47 @@ export class TodoList{
         this.idTodoList = idTodoList;
     };
 
-    addTask(idTodoList: string, task: TaskElement){
-        const todoListSelected = this.TodoLists.filter((todoList: TodoListElement) => {
-            todoList.id === idTodoList;
-        });
-    };
-
-    removeTask(idTodoList: string, idTask: string){
-        const todoListSelected = this.TodoLists.filter((todoList: TodoListElement) => {
+    addTodoListTask(idTodoList: string, task: TaskElement){
+        const todoListSelected: undefined | TodoListElement = this.TodoLists.find((todoList: TodoListElement) => {
             todoList.id === idTodoList;
         });
 
-
+        if(todoListSelected){
+            todoListSelected.tasks.push(task);
+        } else{
+            console.error("Todo-list don`t exist.");
+            return;
+        };
     };
 
-    changeTaskContent(idTodoList: string, idTask: string, content: string){
+    removeTodoListTask(idTodoList: string, idTask: string){
+        const todoListSelected: undefined | TodoListElement = this.TodoLists.find((todoList: TodoListElement) => {
+            todoList.id === idTodoList;
+        });
+
+        if(todoListSelected){
+            const taskSelected: undefined | TaskElement = todoListSelected.tasks.find((task: TaskElement) => {
+                task.id === idTask;
+            });
+
+            if(taskSelected){
+                const taskPosition = todoListSelected.tasks.indexOf(taskSelected);
+                todoListSelected.tasks.splice(taskPosition, 1);
+            } else{
+                console.error("Task don't exist");
+                return;
+            }
+        } else{
+            console.error("Todo-list don't exist");
+            return;
+        };
+    };
+
+    changeTodoListTaskContent(idTodoList: string, idTask: string, content: string){
         
-    }   
+    };
+
+    showTaskContent(idTodoList: string, idTask: string){
+
+    };
 }
