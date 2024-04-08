@@ -5,6 +5,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
 
 export function Task(){
+    const [task, setTask] = useState();
+
     return(
         <Dialog.Root>
             <Dialog.Trigger>
