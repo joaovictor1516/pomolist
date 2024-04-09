@@ -1,5 +1,6 @@
 export interface TaskElement{
     id: string;
+    time: Date;
     title: string;
     content: string;
     completed: boolean;
