@@ -3,15 +3,21 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
+import { TaskElement } from "@/src/interfaces/interfaces";
 
 export function Task(){
-    const [task, setTask] = useState();
+    const [task, setTask] = useState<TaskElement[]>([]);
+
+    const focusTime = () => {
+
+    }
+
 
     return(
         <Dialog.Root>
             <Dialog.Trigger>
                 <div className="">
-
+                    <div className=""></div>
                 </div>
             </Dialog.Trigger>
 
@@ -25,7 +31,12 @@ export function Task(){
                     </Dialog.Close>
 
                     <div className="">
-                        
+                        <form action="" className="">
+                            <p>Title: </p>
+                            <input type="text" id="taskTitle" required className=""/>
+                            <textarea name="taskContent" id="taskContent" required className=""/>
+
+                        </form>
                     </div>
                     
                 </Dialog.Content>
