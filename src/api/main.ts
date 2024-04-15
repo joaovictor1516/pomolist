@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { TodoListElement, TaskElement } from "../interfaces/interfaces";
 
-export class Task{
+export class TaskApi{
     idTask: string;
+    time: Date;
     title: string;
     content: string;
     completed: boolean;
@@ -10,8 +11,9 @@ export class Task{
     todoListPropriets: TodoListElement[];
     
 
-    constructor(idTask: string, title: string, content: string, completed: boolean, todoListMember: boolean, todoListPropriets: TodoListElement[]){
+    constructor(idTask: string, time: Date, title: string, content: string, completed: boolean, todoListMember: boolean, todoListPropriets: TodoListElement[]){
         this.idTask = idTask;
+        this.time = time;
         this.title = title;
         this.content = content;
         this.completed = completed;
@@ -22,6 +24,7 @@ export class Task{
     creatTask(): TaskElement{
         const task: TaskElement = {
             id: this.idTask,
+            time: this.time,
             title: this.title,
             content: this.content,
             completed: this.completed,
@@ -41,7 +44,7 @@ export class Task{
     }
 };
 
-export class TodoList{
+export class TodoListApi{
     TodoLists: TodoListElement[];
     idTodoList: string;
 
@@ -50,44 +53,65 @@ export class TodoList{
         this.idTodoList = idTodoList;
     };
 
-    addTodoListTask(idTodoList: string, task: TaskElement){
-        const todoListSelected: undefined | TodoListElement = this.TodoLists.find((todoList: TodoListElement) => {
-            todoList.id === idTodoList;
-        });
+    addTodoListTask(idTodoList: string, task: TaskElement): boolean{
+        const todoListSelected: undefined | TodoListElement = this.TodoLists.find(
+            (todoList: TodoListElement) => todoList.id === idTodoList
+        );
 
         if(todoListSelected){
             todoListSelected.tasks.push(task);
+            return true;
         } else{
             console.error("Todo-list don`t exist.");
-            return;
+            return false;
         };
     };
 
-    removeTodoListTask(idTodoList: string, idTask: string){
-        const todoListSelected: undefined | TodoListElement = this.TodoLists.find((todoList: TodoListElement) => {
-            todoList.id === idTodoList;
-        });
+    removeTodoListTask(idTodoList: string, idTask: string): boolean{
+        const todoListSelected: undefined | TodoListElement = this.TodoLists.find(
+            (todoList: TodoListElement) => todoList.id === idTodoList
+        );
 
         if(todoListSelected){
-            const taskSelected: undefined | TaskElement = todoListSelected.tasks.find((task: TaskElement) => {
-                task.id === idTask;
-            });
+            const taskSelected: undefined | TaskElement = todoListSelected.tasks.find(
+                (task: TaskElement) => task.id === idTask
+            );
 
             if(taskSelected){
-                const taskPosition = todoListSelected.tasks.indexOf(taskSelected);
+                const taskPosition: number = todoListSelected.tasks.indexOf(taskSelected);
                 todoListSelected.tasks.splice(taskPosition, 1);
+                return true;
             } else{
                 console.error("Task don't exist");
-                return;
+                return false;
             }
         } else{
             console.error("Todo-list don't exist");
-            return;
+            return false;
         };
     };
 
     changeTodoListTaskContent(idTodoList: string, idTask: string, content: string){
-        
+        const todoListSelected: undefined | TodoListElement = this.TodoLists.find(
+            (todoList: TodoListElement) => todoList.id === idTodoList
+        );
+        if(todoListSelected){
+            const taskSelected = todoListSelected.tasks.find(
+                (task: TaskElement) => task.id === idTask
+            );
+
+            if(taskSelected){
+                taskSelected.content = content;
+                return true;
+            } else{
+                console.error("This task don't exist");
+                return false;
+            }
+
+        } else{
+            console.error("This todo-list don't exist");
+            return false;
+        }
     };
 
     showTaskContent(idTodoList: string, idTask: string){
