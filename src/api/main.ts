@@ -114,7 +114,26 @@ export class TodoListApi{
         }
     };
 
-    showTaskContent(idTodoList: string, idTask: string){
+    showTodoListTaskContent(idTodoList: string, idTask: string){
+        const todoListSelected: undefined | TodoListElement = this.TodoLists.find(
+            (todoList: TodoListElement) => todoList.id === idTodoList
+        );
 
+        if(todoListSelected){
+            const taskSelected = todoListSelected.tasks.find(
+                (task: TaskElement) => task.id === idTask
+            );
+
+            if(taskSelected){
+                return taskSelected.content;
+            } else{
+                console.error("This task don't exist");
+                return;
+            };
+
+        } else{
+            console.error("This todo-list don`t exist");
+            return;
+        };
     };
-}
+};
