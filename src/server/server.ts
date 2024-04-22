@@ -1,7 +1,11 @@
+import { PrismaClient } from "@prisma/client";
 import fastify from "fastify";
+import { z } from "zod";
 
-const app = fastify();
+export function server(){
+    const app = fastify();
 
-app.listen({port: 3000}, () => {
-    console.log("Server is working");
-});
+    app.listen({port: 3000}, () => {
+        console.log("Server is working");
+    });
+};
