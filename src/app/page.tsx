@@ -6,8 +6,11 @@ import { Header } from "./components/header";
 import { DinamicTab } from "./components/dinamicTab";
 import { Task } from "./components/tasks";
 import { TodoList } from "./components/todo_list";
+import {  TaskApi, TodoListApi } from "../api/main";
 
-export function Principal(){
+export default function Principal(){
+  const [taskGroup, setTaskGroup] = useState();
+
   return(
       <div className="">
           <DinamicTab/>

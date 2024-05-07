@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { TodoListElement, TaskElement } from "../interfaces/interfaces";
+import Server from "next/dist/server/base-server";
 
 export class TaskApi{
     idTask: string;
@@ -9,8 +10,8 @@ export class TaskApi{
     completed: boolean;
     todoListMember: boolean;
     todoListPropriets: TodoListElement[];
+    task: TaskElement;
     
-
     constructor(idTask: string, time: Date, title: string, content: string, completed: boolean, todoListMember: boolean, todoListPropriets: TodoListElement[]){
         this.idTask = idTask;
         this.time = time;
@@ -19,6 +20,7 @@ export class TaskApi{
         this.completed = completed;
         this.todoListMember = todoListMember;
         this.todoListPropriets = todoListPropriets;
+        this.task = this.creatTask();
     }
 
     creatTask(): TaskElement{
@@ -39,7 +41,7 @@ export class TaskApi{
 
     };
 
-    editTask(idTask: string){
+    editTaskContent(idTask: string, content: string){
 
     }
 };
