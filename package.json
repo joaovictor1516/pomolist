@@ -10,6 +10,7 @@
     "server": "tsx watch src/server/server.ts"
   },
   "dependencies": {
+    "@prisma/client": "^5.12.1",
     "@radix-ui/react-dialog": "^1.0.5",
     "dotenv": "^16.4.5",
     "fastify": "^4.26.2",
