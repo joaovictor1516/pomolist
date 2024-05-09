@@ -9,25 +9,29 @@ import { TodoList } from "./components/todo_list";
 import {  TaskApi, TodoListApi } from "../api/main";
 import { TaskElement } from "../interfaces/interfaces";
 
-export default function Principal(){
-  const [taskGroup, setTaskGroup] = useState();
+export interface NodeElement extends TaskElement{
+  head: NodeElement;
+  next: NodeElement;
+}
 
-  class Node<TaskElement>{
-    data: TaskElement;
-    next: TaskElement | null;
-    constructor(data: TaskElement){
+export default function Principal(){
+
+  class Node{
+    data: NodeElement;
+    next: Node | null;
+    constructor(data: NodeElement){
       this.data = data;
       this.next = null
     };
   };
 
   class LinkedList{
-    head: TaskElement | null;
+    head: Node | null;
     constructor(){
       this.head = null;
     };
 
-    increment(data: TaskElement){
+    increment(data: NodeElement){
       const newNode = new Node(data);
 
       if(!this.head){
@@ -35,12 +39,15 @@ export default function Principal(){
       } else{
         let current = this.head;
         while(current.next){
-          current = current.nextç
+          current = current.next;
         };
         current.next = newNode;
       };
     }
   }
+
+  const [taskGroup, setTaskGroup] = useState(new LinkedList());
+  const [task, setTask] = useState();
 
   return(
       <div className="">
