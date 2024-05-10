@@ -1,10 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "tailwindcss/tailwind.css";
 import { Clock } from "./components/clock";
 import { Header } from "./components/header";
 import { DinamicTab } from "./components/dinamicTab";
-import { Task } from "./components/tasks";
+import { Task } from "./components/task/tasks";
+import NewTask from "./components/task/newTasks";
 import { TodoList } from "./components/todo_list";
 import {  TaskApi, TodoListApi } from "../api/main";
 import { TaskElement } from "../interfaces/interfaces";
