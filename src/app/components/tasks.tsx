@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
@@ -7,17 +7,31 @@ import { TaskElement } from "@/src/interfaces/interfaces";
 
 export function Task(){
     const [task, setTask] = useState<TaskElement[]>([]);
+    const [textTask, setTextTask] = useState("");
 
     const focusTime = () => {
 
-    }
+    };
 
+    function handleText(value: ChangeEvent<HTMLTextAreaElement>){
+        const text = value.target.value;
+        setTextTask(text);
+        if(text !== ""){
+            
+        }
+    };
+
+    useEffect(() => {
+        console.log(textTask);
+    }, [textTask]);
 
     return(
         <Dialog.Root>
             <Dialog.Trigger>
                 <div className="">
-                    <div className=""></div>
+                    <div className="">
+                        teste
+                    </div>
                 </div>
             </Dialog.Trigger>
 
@@ -32,9 +46,9 @@ export function Task(){
 
                     <div className="">
                         <form action="" className="">
-                            <p>Title: </p>
+                            <p>Title:</p>
                             <input type="text" id="taskTitle" required className=""/>
-                            <textarea name="taskContent" id="taskContent" required className=""/>
+                            <textarea name="taskContent" id="taskContent" required className="" onChange={handleText}/>
 
                         </form>
                     </div>

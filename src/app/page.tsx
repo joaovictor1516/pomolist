@@ -47,7 +47,6 @@ export default function Principal(){
   }
 
   const [taskGroup, setTaskGroup] = useState(new LinkedList());
-  const [task, setTask] = useState();
 
   return(
       <div className="">
