@@ -16,9 +16,7 @@ export function Task(){
         <Dialog.Root>
             <Dialog.Trigger>
                 <div className="">
-                    <div className="">
-                        teste
-                    </div>
+                    teste
                 </div>
             </Dialog.Trigger>
 
@@ -36,7 +34,7 @@ export function Task(){
                             <p>Title:</p>
                             <input type="text" id="taskTitle" required className=""/>
                             <textarea name="taskContent" id="taskContent" required className=""/>
-
+                            <input type="button" value="Deletar" />
                         </form>
                     </div>
                     
