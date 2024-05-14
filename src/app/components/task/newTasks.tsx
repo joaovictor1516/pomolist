@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, useState, useEffect} from "react";
+import { ChangeEvent, FormEvent, useState, useEffect} from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
@@ -25,7 +25,7 @@ export default function NewTask(){
         }
     };
 
-    function handleCreatTask(){
+    function handleCreatTask(task: FormEvent<HTMLFormElement>){
 
     }
 
@@ -33,7 +33,7 @@ export default function NewTask(){
         <Dialog.Root>
             <Dialog.Trigger>
                 <div className="">
-                    <div className="text-teal-400">
+                    <div className="">
                         Criar uma nova task.
                     </div>
                 </div>
@@ -49,11 +49,11 @@ export default function NewTask(){
                     </Dialog.Close>
 
                     <div className="">
-                        <form action="" className="">
+                        <form action="" className="" onSubmit={handleCreatTask}>
                             <p>Title:</p>
                             <input type="text" id="taskTitle" required className="" onChange={handleTitle}/>
                             <textarea name="taskContent" id="taskContent" required className="" onChange={handleText}/>
-
+                            <input type="submit" value="Criar task"/>
                         </form>
                     </div>
                     
