@@ -55,6 +55,7 @@ export default function Principal(){
           <Header/>
           <Clock/>
           <Task/>
+          <NewTask/>
           <TodoList/>
       </div>
   )
