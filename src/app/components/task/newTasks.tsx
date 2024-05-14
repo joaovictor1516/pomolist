@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState, useEffect} from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
@@ -7,6 +7,7 @@ import { TaskElement } from "@/src/interfaces/interfaces";
 
 export default function NewTask(){
     const [textTask, setTextTask] = useState("");
+    const [titleTask, setTitleTask] = useState("");
 
     function handleText(value: ChangeEvent<HTMLTextAreaElement>){
         const text = value.target.value;
@@ -14,14 +15,26 @@ export default function NewTask(){
         if(text !== ""){
             setTextTask(text);
         }
+    };
+
+    function handleTitle(value: ChangeEvent<HTMLInputElement>){
+        const title = value.target.value;
+
+        if(title !== ""){
+            setTitleTask(title);
+        }
+    };
+
+    function handleCreatTask(){
+
     }
 
     return(
         <Dialog.Root>
             <Dialog.Trigger>
                 <div className="">
-                    <div className="">
-                        teste
+                    <div className="text-teal-400">
+                        Criar uma nova task.
                     </div>
                 </div>
             </Dialog.Trigger>
@@ -38,7 +51,7 @@ export default function NewTask(){
                     <div className="">
                         <form action="" className="">
                             <p>Title:</p>
-                            <input type="text" id="taskTitle" required className=""/>
+                            <input type="text" id="taskTitle" required className="" onChange={handleTitle}/>
                             <textarea name="taskContent" id="taskContent" required className="" onChange={handleText}/>
 
                         </form>
