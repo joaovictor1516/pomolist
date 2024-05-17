@@ -1,16 +1,22 @@
-export interface TaskElement{
-    id: string;
+export interface NewTaskElement{ 
     time: Date;
     title: string;
     content: string;
+    creatTask: (title: string, content: string, time: Date) => void;
+}
+
+export interface TaskElement extends NewTaskElement{
+    id: string;
     completed: boolean;
-    todoListMember: boolean;
-    todoListPropriets?: TodoListElement[]; //caso seja membro de uma todo-list recebera as propriedades dos elementos de uma todo-list, como por exemplo a informacao de quando esta programado para esta task ser colocada no clock do pomodoro. 
 };
+
+export interface NewTodoListEment{
+    tasks: TaskElement[];
+    creatTodoList: (task: TaskElement) => void;
+}
 
 export interface TodoListElement{
     id: string;
-    tasks: TaskElement[];
     completed: boolean;
 };
 
