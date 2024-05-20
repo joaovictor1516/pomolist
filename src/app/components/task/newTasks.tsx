@@ -3,9 +3,9 @@ import { ChangeEvent, FormEvent, useState, useEffect} from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
-import { TaskElement } from "@/src/interfaces/interfaces";
+import { NewTaskElement } from "@/src/interfaces/interfaces";
 
-export default function NewTask(){
+export default function NewTask(props: NewTaskElement){
     const [textTask, setTextTask] = useState("");
     const [titleTask, setTitleTask] = useState("");
 
@@ -25,8 +25,8 @@ export default function NewTask(){
         }
     };
 
-    function handleCreatTask(task: FormEvent<HTMLFormElement>){
-
+    function handleCreatTask(task: FormEvent){
+        props.creatTask(titleTask, textTask, );
     }
 
     return(
@@ -50,9 +50,16 @@ export default function NewTask(){
 
                     <div className="">
                         <form action="" className="" onSubmit={handleCreatTask}>
-                            <p>Title:</p>
+                            <p className="">Titulo:</p>
                             <input type="text" id="taskTitle" required className="" onChange={handleTitle}/>
+                            <p className="">Tarefa:</p>
                             <textarea name="taskContent" id="taskContent" required className="" onChange={handleText}/>
+                            <p className="">Tempo de duração:</p>
+                            <input type="time" name="taskTime" id="taskTime" className=""/>
+                            <p className="">Tempo curto de descanso:</p>
+                            <input type="time" name="shortRestTime" id="shortRestTime" className=""/>
+                            <p className="">Tempo longo de descanso:</p>
+                            <input type="time" name="longRestTime" id="longRestTime" className=""/>
                             <input type="submit" value="Criar task"/>
                         </form>
                     </div>
