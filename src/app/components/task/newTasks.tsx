@@ -8,6 +8,9 @@ import { NewTaskElement } from "@/src/interfaces/interfaces";
 export default function NewTask(props: NewTaskElement){
     const [textTask, setTextTask] = useState("");
     const [titleTask, setTitleTask] = useState("");
+    const [timeTask, setTimeTask] = useState<Date | null>(null);
+    const [shortRestTime, setShortRestTime] = useState<Date | null>(null);
+    const [longRestTime, setLongRestTime] = useState<Date | null>(null);
 
     function handleText(value: ChangeEvent<HTMLTextAreaElement>){
         const text = value.target.value;
@@ -25,8 +28,25 @@ export default function NewTask(props: NewTaskElement){
         }
     };
 
+    function handleTimeTask(value: ChangeEvent<HTMLInputElement>, setTime: (data: Date | null) => void){
+        const timeString = value.target.value;
+
+        if(timeString !== ""){
+            const [minutes, seconds] = timeString.split(":").map(Number);
+            const time = new Date()
+            time.setMinutes(minutes, seconds);
+            setTime(time);
+        } else{
+            setTime(null);
+        }
+    }
+
     function handleCreatTask(task: FormEvent){
-        props.creatTask(titleTask, textTask, );
+        task.preventDefault();
+
+        if(titleTask && textTask && timeTask && shortRestTime && longRestTime){
+            props.creatTask(titleTask, textTask, timeTask);
+        }
     }
 
     return(
@@ -55,11 +75,11 @@ export default function NewTask(props: NewTaskElement){
                             <p className="">Tarefa:</p>
                             <textarea name="taskContent" id="taskContent" required className="" onChange={handleText}/>
                             <p className="">Tempo de duração:</p>
-                            <input type="time" name="taskTime" id="taskTime" className=""/>
+                            <input type="time" name="taskTime" id="taskTime" className="" onChange={(event) => handleTimeTask(event, setTimeTask)}/>
                             <p className="">Tempo curto de descanso:</p>
-                            <input type="time" name="shortRestTime" id="shortRestTime" className=""/>
+                            <input type="time" name="shortRestTime" id="shortRestTime" className="" value={"5:00"} onChange={(event) => handleTimeTask(event, setShortRestTime)}/>
                             <p className="">Tempo longo de descanso:</p>
-                            <input type="time" name="longRestTime" id="longRestTime" className=""/>
+                            <input type="time" name="longRestTime" id="longRestTime" className="" value={"10:00"} onChange={(event) => handleTimeTask(event, setLongRestTime)}/>
                             <input type="submit" value="Criar task"/>
                         </form>
                     </div>
