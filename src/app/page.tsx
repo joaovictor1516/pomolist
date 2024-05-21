@@ -15,7 +15,7 @@ export interface NodeElement extends TaskElement{
   next: NodeElement;
 }
 
-export default function Principal(){
+export default function Principal(props: TaskElement){
 
   class Node{
     data: NodeElement;
@@ -49,13 +49,23 @@ export default function Principal(){
 
   const [taskGroup, setTaskGroup] = useState(new LinkedList());
 
+  function creatTask(title: string, content: string, timeTask: Date, shortRestTime: Date, longRestTime: Date){
+    props.id = crypto.randomUUID();
+    props.title = title;
+    props.content = content;
+    props.timeTask = timeTask;
+    props.shortRestTime = shortRestTime;
+    props.longRestTime = longRestTime;
+    props.completed = false;
+  };
+
   return(
       <div className="">
           <DinamicTab/>
           <Header/>
           <Clock/>
           <Task/>
-          <NewTask/>
+          <NewTask creatTask={creatTask}/>
           <TodoList/>
       </div>
   )
