@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, FormEvent, useState, useEffect} from "react";
+import { ChangeEvent, FormEvent, useState} from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
@@ -45,7 +45,7 @@ export default function NewTask(props: NewTaskElement){
         task.preventDefault();
 
         if(titleTask && textTask && timeTask && shortRestTime && longRestTime){
-            props.creatTask(titleTask, textTask, timeTask);
+            props.creatTask(titleTask, textTask, timeTask, shortRestTime, longRestTime);
         }
     }
 
