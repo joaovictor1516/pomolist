@@ -1,12 +1,12 @@
-export interface NewTaskElement{ 
-    time: Date;
-    title: string;
-    content: string;
+export interface NewTaskElement{
     creatTask: (title: string, content: string, time: Date) => void;
 }
 
 export interface TaskElement extends NewTaskElement{
-    id: string;
+    id: string; 
+    time: Date;
+    title: string;
+    content: string;
     completed: boolean;
 };
 
