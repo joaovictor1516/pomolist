@@ -1,13 +1,15 @@
 export interface NewTaskElement{
-    creatTask: (title: string, content: string, time: Date) => void;
+    creatTask: (title: string, content: string, timeTask: Date, shortRestTime: Date, longRestTime: Date) => void;
 }
 
-export interface TaskElement extends NewTaskElement{
-    id: string; 
-    time: Date;
-    title: string;
+export interface TaskElement{
+    id: string;
+    title: string; 
+    timeTask: Date;
     content: string;
     completed: boolean;
+    longRestTime: Date;
+    shortRestTime: Date;
 };
 
 export interface NewTodoListEment{
