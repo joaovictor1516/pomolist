@@ -64,7 +64,13 @@ export default function Principal(props: TaskElement){
           <DinamicTab/>
           <Header/>
           <Clock/>
-          <Task/>
+          <Task id={props.id} 
+                title={props.title} 
+                content={props.content} 
+                timeTask={props.timeTask} 
+                shortRestTime={props.shortRestTime}
+                longRestTime={props.longRestTime}
+                completed={props.completed}/>
           <NewTask creatTask={creatTask}/>
           <TodoList/>
       </div>
