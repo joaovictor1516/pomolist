@@ -14,6 +14,14 @@ export function Task(props: TaskElement){
         if(time.getMinutes() === taskTime.getMinutes()){}
     };
 
+    function editTask(){
+
+    }
+
+    const timeStack = props.timeTask.toLocaleDateString("pt-BR");
+    const longRestTime = props.longRestTime.toLocaleDateString("pt-BR");
+    const shortRestTime = props.shortRestTime.toLocaleDateString("pt-BR");
+
     return(
         <Dialog.Root>
             <Dialog.Trigger>
@@ -24,7 +32,15 @@ export function Task(props: TaskElement){
                     </div>
                     <div className="">
                         <p className="">Tempo da atividade:</p>
-                        <p>{props.timeTask}</p>
+                        <p>{timeStack}</p>
+                    </div>
+                    <div className="">
+                        <p className="">Tempo de descanso curto:</p>
+                        <p>{shortRestTime}</p>
+                    </div>
+                    <div className="">
+                        <p className="">Tempo de descanso longo:</p>
+                        <p className="">{longRestTime}</p>
                     </div>
                 </div>
             </Dialog.Trigger>
@@ -40,11 +56,22 @@ export function Task(props: TaskElement){
 
                     <div className="">
                         <form action="" className="">
-                            <p>Title:</p>
-                            <input type="text" id="taskTitle" required className=""/>
-                            <textarea name="taskContent" id="taskContent" required className=""/>
-                            <input type="button" value="Editar"/>
-                            <input type="button" value="Deletar" />
+                            <span className="">Titulo:</span>
+                            <input type="text" id="taskTitle" className="" value={props.title}/>
+                            <span className="">Tarefa:</span>
+                            <textarea name="taskContent" id="taskContent" className="" value={props.content}/>
+                            <div className="">
+                                <span className="">Tempo de duração:</span>
+                                <input type="time" name="timeStack" id="timeStack" className=""/>
+                                <span className="">Tempo de descanso curto:</span>
+                                <input type="time" name="shortRestTime" id="shortRestTime" className=""/>
+                                <span className="">Tempo de descanso longo:</span>
+                                <input type="time" name="longRestTime" id="longRestTime" className=""/>
+                            </div>
+                            <div className="">
+                                <input type="button" value="Editar"/>
+                                <input type="button" value="Deletar" />
+                            </div>
                         </form>
                     </div>
                     
