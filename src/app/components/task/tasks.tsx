@@ -1,12 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
 import { TaskElement } from "@/src/interfaces/interfaces";
 
 export function Task(props: TaskElement){
-    const [task, setTask] = useState<TaskElement[]>([]);
 
     const focusTime = (time: Date) => {
         const taskTime = new Date();
@@ -14,13 +13,22 @@ export function Task(props: TaskElement){
         if(time.getMinutes() === taskTime.getMinutes()){}
     };
 
-    function editTask(){
+    function editTask(value: MouseEvent<HTMLInputElement>){
 
     }
 
-    const timeStack = props.timeTask.toLocaleDateString("pt-BR");
-    const longRestTime = props.longRestTime.toLocaleDateString("pt-BR");
-    const shortRestTime = props.shortRestTime.toLocaleDateString("pt-BR");
+    function removeTask(value: MouseEvent<HTMLInputElement>){
+
+    }
+    let timeStack: string | undefined = undefined;
+    let longRestTime: string | undefined = undefined;
+    let shortRestTime: string | undefined = undefined;
+
+    if(props){
+        timeStack = props.timeTask.toLocaleDateString("pt-BR");
+        longRestTime = props.longRestTime.toLocaleDateString("pt-BR");
+        shortRestTime = props.shortRestTime.toLocaleDateString("pt-BR");
+    }
 
     return(
         <Dialog.Root>
@@ -69,8 +77,8 @@ export function Task(props: TaskElement){
                                 <input type="time" name="longRestTime" id="longRestTime" className=""/>
                             </div>
                             <div className="">
-                                <input type="button" value="Editar"/>
-                                <input type="button" value="Deletar" />
+                                <input type="button" value="Editar" onClick={editTask}/>
+                                <input type="button" value="Deletar" onClick={removeTask}/>
                             </div>
                         </form>
                     </div>
