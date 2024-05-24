@@ -3,13 +3,17 @@ export interface NewTaskElement{
 }
 
 export interface TaskElement{
-    id: string;
-    title: string; 
-    timeTask: Date;
-    content: string;
-    completed: boolean;
-    longRestTime: Date;
-    shortRestTime: Date;
+    task: {
+        id: string;
+        title: string; 
+        timeTask: Date;
+        content: string;
+        completed: boolean;
+        longRestTime: Date;
+        shortRestTime: Date;
+    };
+    editTask: (id: string) => void;
+    removeTask: (id: string) => void;
 };
 
 export interface NewTodoListEment{
