@@ -3,15 +3,16 @@ export interface NewTaskElement{
 }
 
 export interface TaskElement{
-    task: {
-        id: string;
-        title: string; 
-        timeTask: Date;
-        content: string;
-        completed: boolean;
-        longRestTime: Date;
-        shortRestTime: Date;
-    };
+    id: string;
+    title: string; 
+    timeTask: Date;
+    content: string;
+    completed: boolean;
+    longRestTime: Date;
+    shortRestTime: Date;
+};
+
+export interface TaskControl extends TaskElement{
     editTask: (id: string) => void;
     removeTask: (id: string) => void;
 };
