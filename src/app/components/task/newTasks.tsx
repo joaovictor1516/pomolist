@@ -5,7 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
 import { NewTaskElement } from "@/src/interfaces/interfaces";
 
-export default function NewTask(props: NewTaskElement){
+export function NewTask(props: NewTaskElement){
     const [textTask, setTextTask] = useState("");
     const [titleTask, setTitleTask] = useState("");
     const [timeTask, setTimeTask] = useState<Date | null>(null);
