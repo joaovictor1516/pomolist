@@ -1,25 +1,18 @@
 "use client";
-import { useState, MouseEvent } from "react";
+import { useState } from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
-import { TaskElement } from "@/src/interfaces/interfaces";
+import { TaskControl } from "@/src/interfaces/interfaces";
 
-export function Task(props: TaskElement){
+export function Task(props: TaskControl){
 
     const focusTime = (time: Date) => {
         const taskTime = new Date();
         taskTime.setMinutes(0);
         if(time.getMinutes() === taskTime.getMinutes()){}
     };
-
-    function editTask(value: MouseEvent<HTMLInputElement>){
-
-    }
-
-    function removeTask(value: MouseEvent<HTMLInputElement>){
-
-    }
+    
     let timeStack: string | undefined = undefined;
     let longRestTime: string | undefined = undefined;
     let shortRestTime: string | undefined = undefined;
@@ -77,8 +70,8 @@ export function Task(props: TaskElement){
                                 <input type="time" name="longRestTime" id="longRestTime" className=""/>
                             </div>
                             <div className="">
-                                <input type="button" value="Editar" onClick={editTask}/>
-                                <input type="button" value="Deletar" onClick={removeTask}/>
+                                <input type="button" value="Editar" onClick={() => props.editTask(props.id)}/>
+                                <input type="button" value="Deletar" onClick={() => props.removeTask(props.id)}/>
                             </div>
                         </form>
                     </div>
