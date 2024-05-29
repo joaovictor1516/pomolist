@@ -17,6 +17,10 @@ export interface TaskControl extends TaskElement{
     removeTask: (id: string) => void;
 };
 
+export interface TaskClock{
+    taskTimer: (id: string) => void;
+};
+
 export interface NewTodoListEment{
     tasks: TaskElement[];
     creatTodoList: (task: TaskElement) => void;
