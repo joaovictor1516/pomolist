@@ -48,17 +48,18 @@ export default function Principal(props: TaskElement){
   }
 
   const [taskGroup, setTaskGroup] = useState(new LinkedList());
-  const [task, setTask] = useState<TaskElement>();
+  const [tasks, setTasks] = useState<TaskElement[]>([]);
 
   function creatTask(title: string, content: string, timeTask: Date, shortRestTime: Date, longRestTime: Date){
-    
-      props.id = crypto.randomUUID();
-      props.title = title;
-      props.content = content;
-      props.timeTask = timeTask;
-      props.shortRestTime = shortRestTime;
-      props.longRestTime = longRestTime;
-      props.completed = false;
+    props.id = crypto.randomUUID();
+    props.title = title;
+    props.content = content;
+    props.timeTask = timeTask;
+    props.shortRestTime = shortRestTime;
+    props.longRestTime = longRestTime;
+    props.completed = false;
+
+    setTasks([props, ...tasks])
   };
 
   function editTask(id: string){
@@ -69,11 +70,16 @@ export default function Principal(props: TaskElement){
 
   }
 
+  function taskTimer(id: string){
+    const theTask = tasks.filter((task) => task.id === id)[0];
+    return [theTask.timeTask, theTask.longRestTime, theTask.shortRestTime];
+  }
+
   return(
       <div className="">
           <DinamicTab/>
           <Header/>
-          <Clock/>
+          <Clock taskTimer={taskTimer}/>
           <Task key={props.id}
                 id={props.id} 
                 title={props.title} 
