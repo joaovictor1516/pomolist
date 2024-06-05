@@ -14,10 +14,16 @@ export function Clock(props: TaskClock){
     }  
 
     return(
-        <div className="">
-            <p className="">
-                {worksTime?.toLocaleDateString()}
-            </p>
-        </div>
+        <>
+            <div className="">
+                <p className="">
+                    {worksTime?.toLocaleDateString()}
+                </p>
+            </div>
+            <div className="">
+                <button type="button">Pausar</button>
+                <button type="button">Terminar</button>
+            </div>
+        </>
     )
 }
