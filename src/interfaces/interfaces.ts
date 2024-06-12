@@ -21,7 +21,7 @@ export interface TaskClock{
     taskTimer: (id: string) => Date[];
 };
 
-export interface NewTodoListEment{
+export interface NewTodoListElement{
     tasks: TaskElement[];
     creatTodoList: (task: TaskElement) => void;
 }
