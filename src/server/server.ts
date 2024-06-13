@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import fastify from "fastify";
-import { z } from "zod";
 
 export function server(){
     const app = fastify();
