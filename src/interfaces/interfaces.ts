@@ -34,5 +34,8 @@ export interface TodoListElement{
 export interface DataUser{
     id: string;
     userName: string;
+    userPassword: string;
+    tasks: TaskElement[]; //lista de tasks;
     todoListMaked: boolean; //checa se o usuario criou alguma todo-list;
+    todoLists: TodoListElement[] | null //lista de todoLists, caso tenha;
 };
