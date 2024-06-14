@@ -17,11 +17,11 @@ export function Task(props: TaskControl){
     let longRestTime: string | undefined = undefined;
     let shortRestTime: string | undefined = undefined;
 
-    if(props){
+    if(props.timeTask && props.longRestTime && props.longRestTime){
         timeStack = props.timeTask.toLocaleDateString("pt-BR");
         longRestTime = props.longRestTime.toLocaleDateString("pt-BR");
         shortRestTime = props.shortRestTime.toLocaleDateString("pt-BR");
-    }
+    };
 
     return(
         <Dialog.Root>
