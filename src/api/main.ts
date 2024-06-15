@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { NewTodoListElement, TodoListElement, TaskElement } from "../interfaces/interfaces";
+import { TaskElement } from "../interfaces/interfaces";
 import Server from "next/dist/server/base-server";
 
 export class TaskApi{
@@ -42,7 +42,7 @@ export class TaskApi{
             shortRestTime: this.shortRestTime
         };
 
-        return task;
+        return task;  
     };
 
     deleteTask(idTask: string){
@@ -53,3 +53,19 @@ export class TaskApi{
 
     }
 };
+
+export class Count{
+    idUser: string;
+    emailUser: string;
+    passwordUser: string;
+
+    constructor(idUser: string, emailUser: string, passwordUser: string){
+        this.idUser = idUser;
+        this.emailUser = emailUser;
+        this.passwordUser = passwordUser;
+    }
+
+    creatUser(){
+        
+    }
+}
