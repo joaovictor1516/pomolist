@@ -3,11 +3,10 @@ import { useState } from "react";
 import "tailwindcss/tailwind.css";
 import { Clock } from "./components/clock";
 import { Header } from "./components/header";
-import { DinamicTab } from "./components/dinamicTab";
 import { Task } from "./components/task/tasks";
 import { NewTask } from "./components/task/newTasks";
 import { TodoList } from "./components/todo_list";
-import {  TaskApi, TodoListApi } from "../api/main";
+import {  TaskApi } from "../api/main";
 import { TaskElement } from "../interfaces/interfaces";
 
 export interface NodeElement extends TaskElement{
@@ -59,11 +58,11 @@ export default function Principal(props: TaskElement){
     props.longRestTime = longRestTime;
     props.completed = false;
 
-    setTasks([props, ...tasks])
+    setTasks([props, ...tasks]);
   };
 
   function editTask(id: string){
-        
+    
   }
 
   function removeTask(id: string){
@@ -76,23 +75,32 @@ export default function Principal(props: TaskElement){
   }
 
   return(
-      <div className="">
-          <DinamicTab/>
-          <Header/>
-          <Clock taskTimer={taskTimer}/>
-          <Task key={props.id}
-                id={props.id} 
-                title={props.title} 
-                content={props.content} 
-                timeTask={props.timeTask} 
-                shortRestTime={props.shortRestTime}
-                longRestTime={props.longRestTime}
-                completed={props.completed}
-                editTask={editTask}
-                removeTask={removeTask}
-                />
-          <NewTask creatTask={creatTask}/>
-          <TodoList/>
-      </div>
+    <>
+      <head>
+        <title>
+          {props.title}
+        </title>
+      </head>
+
+      <body>
+        <div className="">
+            <Header/>
+            <Clock taskTimer={taskTimer}/>
+            <Task key={props.id}
+                  id={props.id}
+                  title={props.title}
+                  content={props.content}
+                  timeTask={props.timeTask}
+                  shortRestTime={props.shortRestTime}
+                  longRestTime={props.longRestTime}
+                  completed={props.completed}
+                  editTask={editTask}
+                  removeTask={removeTask}
+                  />
+            <NewTask creatTask={creatTask}/>
+            <TodoList/>
+        </div>
+      </body>
+    </>  
   )
 }
