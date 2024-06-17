@@ -31,11 +31,11 @@ export interface TodoListElement{
     completed: boolean;
 };
 
-export interface DataUser{
+export interface User{
     id: string;
     userName: string;
     userPassword: string;
-    tasks: TaskElement[]; //lista de tasks;
+    tasks: TaskElement[] | null; //lista de tasks;
     todoListMaked: boolean; //checa se o usuario criou alguma todo-list;
     todoLists: TodoListElement[] | null //lista de todoLists, caso tenha;
 };
