@@ -1,6 +1,6 @@
 "use client";
 import "tailwindcss/tailwind.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {Slide, ToastContainer} from "react-toastify";
 
 import { Clock } from "./components/clock";
@@ -9,7 +9,7 @@ import { Task } from "./components/task/tasks";
 import { NewTask } from "./components/task/newTasks";
 import { TodoList } from "./components/todo_list";
 
-import { TaskElement } from "../interfaces/interfaces";
+import { TaskElement, TodoListElement } from "../interfaces/interfaces";
 
 export interface NodeElement extends TaskElement{
   head: NodeElement;
@@ -18,8 +18,11 @@ export interface NodeElement extends TaskElement{
 
 export default function Principal(props: TaskElement){
   const [tasks, setTasks] = useState<TaskElement[]>([]);
+  const [todoList, setTodoList] = useState<TodoListElement[]>([]);
+  const [existTask, setExistTask] = useState<boolean>(false);
+  const [existTodoList, setExistTodoList] = useState<boolean>(false);
 
-  function creatTask(title: string, content: string, timeTask: Date, shortRestTime: Date, longRestTime: Date){
+  const creatTask = async (title: string, content: string, timeTask: Date, shortRestTime: Date, longRestTime: Date) => {
     props.id = crypto.randomUUID();
     props.title = title;
     props.content = content;
@@ -31,18 +34,33 @@ export default function Principal(props: TaskElement){
     setTasks([props, ...tasks]);
   };
 
-  function editTask(id: string){
+  const editTask = async (id: string) => {
+    
+  }
+
+  const removeTask = async (id: string) => {
 
   }
 
-  function removeTask(id: string){
-
-  }
-
-  function taskTimer(id: string){
+  const taskTimer = (id: string) => {
     const theTask = tasks.filter((task) => task.id === id)[0];
     return [theTask.timeTask, theTask.longRestTime, theTask.shortRestTime];
   }
+
+  function isExistTask(){
+    if(tasks){
+      setExistTask(true);
+    }
+  };
+
+  function isExistTodoList(){
+    if(todoList){
+      setExistTodoList(true);
+    }
+  }
+
+  useEffect(isExistTask);
+  useEffect(isExistTodoList);
 
   return(
     <>
@@ -56,7 +74,9 @@ export default function Principal(props: TaskElement){
         <div className="">
             <Header/>
             <Clock taskTimer={taskTimer}/>
-            <Task key={props.id}
+
+            {existTask? 
+              <Task key={props.id}
                   id={props.id}
                   title={props.title}
                   content={props.content}
@@ -66,9 +86,15 @@ export default function Principal(props: TaskElement){
                   completed={props.completed}
                   editTask={editTask}
                   removeTask={removeTask}
-                  />
+                  /> : 
+                <p>Nenhuma tarefa criada.</p>}
+                
             <NewTask creatTask={creatTask}/>
-            <TodoList/>
+
+            {existTodoList? 
+              <TodoList/> :
+              <p>Nenguma lista de tarefas criada.</p>}
+            
             <ToastContainer
               hideProgressBar={true}
               position="top-right"
