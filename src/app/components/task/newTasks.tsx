@@ -60,7 +60,7 @@ export function NewTask(props: NewTaskElement){
 
     return(
         <Dialog.Root>
-            <Dialog.Trigger>
+            <Dialog.Trigger className="">
                 <div className="">
                     <div className="">
                         Criar uma nova task.
@@ -78,17 +78,34 @@ export function NewTask(props: NewTaskElement){
                     </Dialog.Close>
 
                     <div className="">
-                        <form action="" className="" onSubmit={handleCreatTask}>
+                        <form 
+                            className="" 
+                            onSubmit={handleCreatTask}>
+                            
                             <p className="">Titulo:</p>
-                            <input type="text" id="taskTitle" required className="" onChange={handleTitle}/>
+                            
+                            <input type="text" 
+                                   id="taskTitle" 
+                                   required
+                                   className=""
+                                   onChange={handleTitle}/>
+
                             <p className="">Tarefa:</p>
+                            
                             <textarea name="taskContent" id="taskContent" required className="" onChange={handleText}/>
+                            
                             <p className="">Tempo de duração:</p>
+                            
                             <input type="time" name="taskTime" id="taskTime" className="" onChange={(event) => handleTimeTask(event, setTimeTask)}/>
+                            
                             <p className="">Tempo curto de descanso:</p>
+                            
                             <input type="time" name="shortRestTime" id="shortRestTime" className="" value={"5:00"} onChange={(event) => handleTimeTask(event, setShortRestTime)}/>
+                            
                             <p className="">Tempo longo de descanso:</p>
+                            
                             <input type="time" name="longRestTime" id="longRestTime" className="" value={"10:00"} onChange={(event) => handleTimeTask(event, setLongRestTime)}/>
+                            
                             <input type="submit" value="Criar task"/>
                         </form>
                     </div>
