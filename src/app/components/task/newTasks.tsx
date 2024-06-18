@@ -1,6 +1,7 @@
 "use client";
 import { ChangeEvent, FormEvent, useState} from "react";
 import { X } from "lucide-react";
+import { Slide, toast } from "react-toastify";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
 import { NewTaskElement } from "@/src/interfaces/interfaces";
@@ -46,7 +47,15 @@ export function NewTask(props: NewTaskElement){
 
         if(titleTask && textTask && timeTask && shortRestTime && longRestTime){
             props.creatTask(titleTask, textTask, timeTask, shortRestTime, longRestTime);
-        }
+            toast.success("Tarefa criada com sucesso.", {
+                position: "top-right",
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                transition: Slide,
+                autoClose: 500
+            });
+        } 
     }
 
     return(

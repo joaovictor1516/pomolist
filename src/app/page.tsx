@@ -1,12 +1,14 @@
 "use client";
-import { useState } from "react";
 import "tailwindcss/tailwind.css";
+import { useState } from "react";
+import {Slide, ToastContainer} from "react-toastify";
+
 import { Clock } from "./components/clock";
 import { Header } from "./components/header";
 import { Task } from "./components/task/tasks";
 import { NewTask } from "./components/task/newTasks";
 import { TodoList } from "./components/todo_list";
-import {  TaskApi } from "../api/main";
+
 import { TaskElement } from "../interfaces/interfaces";
 
 export interface NodeElement extends TaskElement{
@@ -15,38 +17,6 @@ export interface NodeElement extends TaskElement{
 }
 
 export default function Principal(props: TaskElement){
-
-  class Node{
-    data: NodeElement;
-    next: Node | null;
-    constructor(data: NodeElement){
-      this.data = data;
-      this.next = null
-    };
-  };
-
-  class LinkedList{
-    head: Node | null;
-    constructor(){
-      this.head = null;
-    };
-
-    increment(data: NodeElement){
-      const newNode = new Node(data);
-
-      if(!this.head){
-        this.head = newNode;
-      } else{
-        let current = this.head;
-        while(current.next){
-          current = current.next;
-        };
-        current.next = newNode;
-      };
-    }
-  }
-
-  const [taskGroup, setTaskGroup] = useState(new LinkedList());
   const [tasks, setTasks] = useState<TaskElement[]>([]);
 
   function creatTask(title: string, content: string, timeTask: Date, shortRestTime: Date, longRestTime: Date){
@@ -62,7 +32,7 @@ export default function Principal(props: TaskElement){
   };
 
   function editTask(id: string){
-    
+
   }
 
   function removeTask(id: string){
@@ -99,6 +69,14 @@ export default function Principal(props: TaskElement){
                   />
             <NewTask creatTask={creatTask}/>
             <TodoList/>
+            <ToastContainer
+              hideProgressBar={true}
+              position="top-right"
+              transition={Slide}
+              autoClose={500}
+              closeOnClick
+              pauseOnHover
+            />
         </div>
       </body>
     </>  
