@@ -48,13 +48,13 @@ export default function Principal(props: TaskElement){
   }
 
   function isExistTask(){
-    if(tasks){
+    if(tasks.length !== 0){
       setExistTask(true);
     }
   };
 
   function isExistTodoList(){
-    if(todoList){
+    if(todoList.length !== 0){
       setExistTodoList(true);
     }
   }
