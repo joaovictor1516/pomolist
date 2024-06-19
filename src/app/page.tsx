@@ -71,7 +71,7 @@ export default function Principal(props: TaskElement){
       </head>
 
       <body>
-        <div className="">
+        <div className="flex justify-center content-center items-center flex-col">
             <Header/>
             <Clock taskTimer={taskTimer}/>
 
