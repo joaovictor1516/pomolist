@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import "tailwindcss/tailwind.css";
 import { useEffect, useState } from "react";
 import {Slide, ToastContainer} from "react-toastify";
