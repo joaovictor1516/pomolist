@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Task } from "./tasks";
 import { X } from "lucide-react";
-import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
+import { useEffect, useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+
+import { Task } from "./task/tasks";
 
 export function TodoList(){
     return(
