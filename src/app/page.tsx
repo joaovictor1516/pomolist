@@ -1,5 +1,4 @@
 "use client";
-import axios from "axios";
 import "tailwindcss/tailwind.css";
 import { useEffect, useState } from "react";
 import {Slide, ToastContainer} from "react-toastify";
@@ -7,15 +6,16 @@ import {Slide, ToastContainer} from "react-toastify";
 import { Clock } from "./components/clock";
 import { Header } from "./components/header";
 import { Task } from "./components/task/tasks";
-import { NewTask } from "./components/task/newTasks";
 import { TodoList } from "./components/todo_list";
+import { NewTask } from "./components/task/newTasks";
+
+import { ShowTasks } from "./pages/api/tasks";
+import { CreateTask } from "./pages/api/tasks/create";
+import { UpdateTask } from "./pages/api/tasks/update";
+import { DeleteTask } from "./pages/api/tasks/delete";
+import { IsTaskCompleted } from "./pages/api/tasks/isCompleted";
 
 import { TaskElement, TodoListElement } from "../interfaces/interfaces";
-
-export interface NodeElement extends TaskElement{
-  head: NodeElement;
-  next: NodeElement;
-}
 
 export default function Principal(props: TaskElement){
   const [tasks, setTasks] = useState<TaskElement[]>([]);
