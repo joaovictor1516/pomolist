@@ -9,12 +9,6 @@ import { Task } from "./components/task/tasks";
 import { TodoList } from "./components/todo_list";
 import { NewTask } from "./components/task/newTasks";
 
-import { ShowTasks } from "./pages/api/tasks";
-import { CreateTask } from "./pages/api/tasks/create";
-import { UpdateTask } from "./pages/api/tasks/update";
-import { DeleteTask } from "./pages/api/tasks/delete";
-import { IsTaskCompleted } from "./pages/api/tasks/isCompleted";
-
 import { TaskElement, TodoListElement } from "../interfaces/interfaces";
 
 export default function Principal(props: TaskElement){
@@ -40,6 +34,7 @@ export default function Principal(props: TaskElement){
   }
 
   const removeTask = async (id: string) => {
+    const theTask = tasks.filter((task) => task.id === id)[0];
 
   }
 
