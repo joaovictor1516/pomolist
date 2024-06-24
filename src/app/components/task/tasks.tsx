@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
-import { TaskControl } from "@/src/interfaces/interfaces";
+import { TaskElement } from "@/src/interfaces/interfaces";
 
-export function Task(props: TaskControl){
+export function Task(props: TaskElement){
 
     const focusTime = (time: Date) => {
         const taskTime = new Date();
@@ -21,6 +21,14 @@ export function Task(props: TaskControl){
         timeStack = props.timeTask.toLocaleDateString("pt-BR");
         longRestTime = props.longRestTime.toLocaleDateString("pt-BR");
         shortRestTime = props.shortRestTime.toLocaleDateString("pt-BR");
+    };
+
+    async function updateTask(){
+        
+    };
+
+    async function removeTask(){
+
     };
 
     return(
@@ -70,8 +78,8 @@ export function Task(props: TaskControl){
                                 <input type="time" name="longRestTime" id="longRestTime" className=""/>
                             </div>
                             <div className="">
-                                <input type="button" value="Editar" onClick={() => props.editTask(props.id)}/>
-                                <input type="button" value="Deletar" onClick={() => props.removeTask(props.id)}/>
+                                <input type="button" value="Editar" onClick={() => updateTask()}/>
+                                <input type="button" value="Deletar" onClick={() => removeTask()}/>
                             </div>
                         </form>
                     </div>
