@@ -12,11 +12,6 @@ export interface TaskElement{
     shortRestTime: Date;
 };
 
-export interface TaskControl extends TaskElement{
-    editTask: (id: string) => void;
-    removeTask: (id: string) => void;
-};
-
 export interface TaskClock{
     taskTimer: (id: string) => Date[];
 };
