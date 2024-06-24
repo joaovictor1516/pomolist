@@ -29,15 +29,6 @@ export default function Principal(props: TaskElement){
     setTasks([props, ...tasks]);
   };
 
-  const editTask = async (id: string) => {
-    
-  }
-
-  const removeTask = async (id: string) => {
-    const theTask = tasks.filter((task) => task.id === id)[0];
-
-  }
-
   const taskTimer = (id: string) => {
     const theTask = tasks.filter((task) => task.id === id)[0];
     return [theTask.timeTask, theTask.longRestTime, theTask.shortRestTime];
@@ -80,8 +71,6 @@ export default function Principal(props: TaskElement){
                   shortRestTime={props.shortRestTime}
                   longRestTime={props.longRestTime}
                   completed={props.completed}
-                  editTask={editTask}
-                  removeTask={removeTask}
                   /> : 
                 <p>Nenhuma tarefa criada.</p>}
                 
