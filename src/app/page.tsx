@@ -13,7 +13,15 @@ import { NewTask } from "./components/task/newTasks";
 import { TaskElement, TodoListElement } from "../interfaces/interfaces";
 
 export default function Principal(props: TaskElement){
-  const [tasks, setTasks] = useState<TaskElement[]>([]);
+  const [tasks, setTasks] = useState<TaskElement[]>(() => {
+    const tasksOnStorage = localStorage.getItem("tasks");
+
+    if(tasksOnStorage){
+      return JSON.parse(tasksOnStorage);
+    }
+
+    return [];
+  });
   const [todoList, setTodoList] = useState<TodoListElement[]>([]);
   const [existTask, setExistTask] = useState<boolean>(false);
   const [existTodoList, setExistTodoList] = useState<boolean>(false);
@@ -51,6 +59,27 @@ export default function Principal(props: TaskElement){
     }
   }
 
+  useEffect(() => {
+    const tasksOnStorage = localStorage.getItem("tasks");
+    if(!tasksOnStorage){
+      const tasksOnDataBase = async () => {
+        try {
+          const response = await axios.get("/api/tasks");
+          
+          if(response.data.length > 0){
+            setTasks(response.data);
+            localStorage.setItem("tasks", JSON.stringify(response.data));
+          };
+
+        } catch (error) {
+          console.error(`Erro na tentativa de pergar os dados do banco de dados, erro: 
+            ${error}`);
+        };
+
+        tasksOnDataBase();
+      }
+    }
+  })
   useEffect(isExistTask);
   useEffect(isExistTodoList);
 
