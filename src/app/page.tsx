@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import "tailwindcss/tailwind.css";
 import { useEffect, useState } from "react";
 import {Slide, ToastContainer} from "react-toastify";
@@ -18,13 +19,17 @@ export default function Principal(props: TaskElement){
   const [existTodoList, setExistTodoList] = useState<boolean>(false);
 
   const creatTask = async (title: string, content: string, timeTask: Date, shortRestTime: Date, longRestTime: Date) => {
-    props.id = crypto.randomUUID();
-    props.title = title;
-    props.content = content;
-    props.timeTask = timeTask;
-    props.shortRestTime = shortRestTime;
-    props.longRestTime = longRestTime;
-    props.completed = false;
+    try{
+      axios.post("/task/creat", 
+        { title,
+          content,
+          timeTask,
+          shortRestTime,
+          longRestTime
+        });
+    } catch(error){
+      console.error(`Erro ao criar a tarefa, erro: ${error}`);
+    }
 
     setTasks([props, ...tasks]);
   };
