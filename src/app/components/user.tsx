@@ -1,11 +1,13 @@
 "use client";
 import axios from "axios";
-import "tailwindcss/tailwind.css";
 import { useState } from "react";
-import { X, UserCircle2 } from "lucide-react";
+import "tailwindcss/tailwind.css";
+import * as Dialog from "@radix-ui/react-dialog";
+import { X, UserCircle2, Mail, Lock } from "lucide-react";
+import { Slide, toast } from "react-toastify";
 
 import { UserElement } from "@/src/interfaces/interfaces";
 
 export function User(props: UserElement){
-    
+
 }
