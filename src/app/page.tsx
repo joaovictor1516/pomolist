@@ -51,7 +51,7 @@ export default function Principal(props: TaskElement){
     setTasks([props, ...tasks]);
   };
 
-  const taskTimer = (id: string) => {
+  const taskTimer = (id: number) => {
     const theTask = tasks.filter((task) => task.id === id)[0];
     return [theTask.timeTask, theTask.longRestTime, theTask.shortRestTime];
   }
