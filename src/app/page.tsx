@@ -81,14 +81,34 @@ export default function Principal(props: TaskElement){
           };
 
         } catch (error) {
-          console.error(`Erro na tentativa de pergar os dados do banco de dados, erro: 
+          console.error(`Erro na tentativa de pergar as tarefas do banco de dados, erro: 
             ${error}`);
         };
 
         tasksOnDataBase();
       }
     }
-  })
+  });
+
+  useEffect(() => {
+    const todoListOnStorage = localStorage.getItem("todoList");
+
+    if(!todoListOnStorage){
+      const todoListOnDateBase = async () => {
+        try {
+          const response = await axios.get("/api/todoLists");
+          if(response.data){
+            setTodoList(response.data);
+            localStorage.setItem("todoList", JSON.stringify(response.data))
+          }
+        } catch(error){
+          console.error(`Erro na tentativa de pegar as listas de afazeres do banco de dados, erro: ${error}`);
+        };
+
+        todoListOnDateBase();
+      }
+    }
+  });
   useEffect(isExistTask);
   useEffect(isExistTodoList);
 
