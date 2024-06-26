@@ -26,7 +26,7 @@ export interface TodoListElement{
     completed: boolean;
 };
 
-export interface User{
+export interface UserElement{
     id: string;
     userName: string;
     userPassword: string;
