@@ -3,7 +3,7 @@ export interface NewTaskElement{
 }
 
 export interface TaskElement{
-    id: string;
+    id: number;
     title: string; 
     timeTask: Date;
     content: string;
@@ -13,7 +13,7 @@ export interface TaskElement{
 };
 
 export interface TaskClock{
-    taskTimer: (id: string) => Date[];
+    taskTimer: (id: number) => Date[];
 };
 
 export interface NewTodoListElement{
@@ -22,7 +22,7 @@ export interface NewTodoListElement{
 }
 
 export interface TodoListElement{
-    id: string;
+    id: number;
     completed: boolean;
 };
 
