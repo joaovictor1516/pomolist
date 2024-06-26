@@ -22,7 +22,16 @@ export default function Principal(props: TaskElement){
 
     return [];
   });
-  const [todoList, setTodoList] = useState<TodoListElement[]>([]);
+  const [todoList, setTodoList] = useState<TodoListElement[]>(() => {
+    const todoListOnStorage = localStorage.getItem("todoList");
+
+    if(todoListOnStorage){
+      return JSON.parse(todoListOnStorage);
+    }
+
+    return [];
+  }
+  );
   const [existTask, setExistTask] = useState<boolean>(false);
   const [existTodoList, setExistTodoList] = useState<boolean>(false);
 
