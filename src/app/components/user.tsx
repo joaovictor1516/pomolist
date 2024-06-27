@@ -9,5 +9,13 @@ import { Slide, toast } from "react-toastify";
 import { UserElement } from "@/src/interfaces/interfaces";
 
 export function User(props: UserElement){
+    async function login(email: string, password: string){
+        
+    }
 
+    return(
+      <button type="button">
+        Fazer o login
+      </button>
+    )
 }
