@@ -12,7 +12,7 @@ import { NewTask } from "./components/task/newTasks";
 
 import { TaskElement, TodoListElement } from "../interfaces/interfaces";
 
-export default function Principal(props: TaskElement){
+export default function Principal(props: Readonly<TaskElement>){
   const [tasks, setTasks] = useState<TaskElement[]>(() => {
     const tasksOnStorage = localStorage.getItem("tasks");
 
@@ -37,7 +37,7 @@ export default function Principal(props: TaskElement){
 
   const creatTask = async (title: string, content: string, timeTask: Date, shortRestTime: Date, longRestTime: Date) => {
     try{
-      axios.post("/task/creat", 
+      await axios.post("/task/creat", 
         { title,
           content,
           timeTask,
