@@ -10,7 +10,7 @@ import { UserElement } from "@/src/interfaces/interfaces";
 export function UserLogin(props: Readonly<UserElement>){
   const [showPasswourd, setShowPassword] = useState<boolean>(false);
   
-  async function login(email: string, password: string){
+  async function login(){
         try {
           await axios
         } catch (error) {
@@ -28,10 +28,16 @@ export function UserLogin(props: Readonly<UserElement>){
 
     return(
         <form className="">
-            <label htmlFor="userEmail" className="">Digite o seu e-mail:</label>
+            <label htmlFor="userEmail" className="">
+              <Mail/>
+              Digite o seu e-mail:
+              </label>
             <input type="email" name="userEmail" id="userEmail" className=""/>
 
-            <label htmlFor="userPassword" className="">Digite a sua senha:</label>
+            <label htmlFor="userPassword" className="">
+              <Lock/>
+              Digite a sua senha:
+              </label>
 
             {showPasswourd ?  
             <input type="text" name="userPassword" id="userPassword" className=""/>:
