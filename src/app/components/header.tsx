@@ -3,7 +3,7 @@ import { useState } from "react";
 import "tailwindcss/tailwind.css";
 import { UserLogin } from "./user/userLogin";
 import { UserSignIn } from "./user/userSignIn";
-import { LogIn, User2, Settings } from "lucide-react";
+import { LogIn, UserCircle2, Settings } from "lucide-react";
 
 export function Header(){
     const [userLogin, setUserLogin] = useState<boolean>(false);
@@ -22,7 +22,20 @@ export function Header(){
 
     return(
         <div className="">
+            <button type="button" className="" onClick={isUserSignIn}>
+                <UserCircle2/>
+                Criar conta                
+            </button>
             
+            <button type="button" className="" onClick={isUserLogin}>
+                <LogIn/>
+                Entrar
+            </button>
+            
+            <button type="button">
+                <Settings/>
+                Configurações
+            </button>
         </div>
     )
 }
