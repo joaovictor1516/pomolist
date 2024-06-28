@@ -2,20 +2,47 @@
 import axios from "axios";
 import { useState } from "react";
 import "tailwindcss/tailwind.css";
-import * as Dialog from "@radix-ui/react-dialog";
-import { X, UserCircle2, Mail, Lock } from "lucide-react";
 import { Slide, toast } from "react-toastify";
+import { X, UserCircle2, Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 import { UserElement } from "@/src/interfaces/interfaces";
 
-export function User(props: UserElement){
-    async function login(email: string, password: string){
-        
+export function UserLogin(props: Readonly<UserElement>){
+  const [showPasswourd, setShowPassword] = useState<boolean>(false);
+  
+  async function login(email: string, password: string){
+        try {
+          await axios
+        } catch (error) {
+          
+        }
+    }
+
+    function isShowPassword(){
+        if(showPasswourd){
+            setShowPassword(false);
+        } else{
+            setShowPassword(true);
+        }
     }
 
     return(
-      <button type="button">
-        Fazer o login
-      </button>
+        <form className="">
+            <label htmlFor="userEmail" className="">Digite o seu e-mail:</label>
+            <input type="email" name="userEmail" id="userEmail" className=""/>
+
+            <label htmlFor="userPassword" className="">Digite a sua senha:</label>
+
+            {showPasswourd ?  
+            <input type="text" name="userPassword" id="userPassword" className=""/>:
+            <input type="password" name="userPassword" id="userPassword" className=""/>}
+            
+            <button type="button" className="" onClick={isShowPassword}>
+                {showPasswourd ?
+                <EyeOff/>:
+                <Eye/>}
+            </button>
+            
+        </form>
     )
 }
