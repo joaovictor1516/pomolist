@@ -28,9 +28,9 @@ export interface TodoListElement{
 
 export interface UserElement{
     id: string;
+    userEmail: string;
     userName: string;
     userPassword: string;
-    tasks: TaskElement[] | null; //lista de tasks;
-    todoListMaked: boolean; //checa se o usuario criou alguma todo-list;
-    todoLists: TodoListElement[] | null //lista de todoLists, caso tenha;
+    tasks: TaskElement[] | null;
+    todoLists: TodoListElement[] | null;
 };
