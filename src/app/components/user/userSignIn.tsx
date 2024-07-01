@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import "tailwindcss/tailwind.css";
 import { Slide, toast } from "react-toastify";
 import { UserCircle2, Mail, Lock, Eye, EyeOff } from "lucide-react";
@@ -23,6 +23,30 @@ export function UserSignIn(){
         
     }
 
+    function handleUserPassword(value: ChangeEvent<HTMLInputElement>){
+        const text = value.target.value;
+
+        if(text !== ""){
+            setUserPasswprd(text);
+        }
+    }
+
+    function handleUserEmail(value: ChangeEvent<HTMLInputElement>){
+        const text = value.target.value;
+
+        if(text !== ""){
+            setUserEmail(text);
+        }
+    }
+
+    function handleUserName(value: ChangeEvent<HTMLInputElement>){
+        const text = value.target.value;
+
+        if(text !== ""){
+            setUserName(text);
+        }
+    }
+
     return(
         <form className="">
             <div className="">
@@ -34,6 +58,7 @@ export function UserSignIn(){
                 <input type="text"
                        name="userName"
                        id="userName"
+                       onChange={handleUserName}
                        className=""/>
             </div>
 
@@ -46,6 +71,7 @@ export function UserSignIn(){
                 <input type="email" 
                        name="userEmail"
                        id="userEmail"
+                       onChange={handleUserEmail}
                        className=""/>
             </div>
 
@@ -58,11 +84,13 @@ export function UserSignIn(){
                 {showPasswourd ?
                 <input type="text" 
                        name="userPassword" 
-                       id="userPassword" 
+                       id="userPassword"
+                       onChange={handleUserPassword}
                        className=""/>:
                 <input type="password" 
                        name="userPassword" 
-                       id="userPassword" 
+                       id="userPassword"
+                       onChange={handleUserPassword}
                        className=""/>}
                     
                 <button type="button" className="" onClick={isShowPassword}>
