@@ -1,20 +1,20 @@
 "use client";
 import axios from "axios";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import "tailwindcss/tailwind.css";
 import { Slide, toast } from "react-toastify";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 import { UserElement } from "@/src/interfaces/interfaces";
 
-export function UserLogin(props: Readonly<UserElement>){
+export function UserLogin(){
   const [showPasswourd, setShowPassword] = useState<boolean>(false);
   const [userPassword, setUserPasswprd] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
   
   async function login(){
         try {
-          await axios
+          await axios.get("/user/api");
         } catch (error) {
           
         }
@@ -25,6 +25,22 @@ export function UserLogin(props: Readonly<UserElement>){
             setShowPassword(false);
         } else{
             setShowPassword(true);
+        }
+    }
+
+    function handleEmail(value: ChangeEvent<HTMLInputElement>){
+        const text = value.target.value
+        
+        if(text !== ""){
+            setUserEmail(text);
+        }
+    }
+
+    function handlePassword(value: ChangeEvent<HTMLInputElement>){
+        const text = value.target.value;
+
+        if(text !== ""){
+            setUserPasswprd(text);
         }
     }
 
@@ -39,6 +55,7 @@ export function UserLogin(props: Readonly<UserElement>){
                 <input type="email" 
                        name="userEmail"
                        id="userEmail"
+                       onChange={handleEmail}
                        className=""/>
             </div>
 
@@ -49,13 +66,15 @@ export function UserLogin(props: Readonly<UserElement>){
                 </label>
                 
                 {showPasswourd ?
-                <input type="text" 
-                       name="userPassword" 
-                       id="userPassword" 
+                <input type="value" 
+                       name="userPassword"
+                       id="userPassword"
+                       onChange={handlePassword}
                        className=""/>:
-                <input type="password" 
+                <input type="password"
                        name="userPassword" 
-                       id="userPassword" 
+                       id="userPassword"
+                       onChange={handlePassword}
                        className=""/>}
                     
                 <button type="button" className="" onClick={isShowPassword}>
