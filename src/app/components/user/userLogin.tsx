@@ -51,10 +51,10 @@ export function UserLogin(){
     }
 
     return(
-        <form className="flex flex-col ">
-            <div className="">
+        <form className="flex flex-col justify-center content-center items-center">
+            <div className="flex flex-row">
                 <label htmlFor="userEmail" 
-                       className="">
+                       className="flex flex-row">
                     <Mail/>
                     Digite o seu e-mail:
                 </label>
@@ -62,11 +62,12 @@ export function UserLogin(){
                        name="userEmail"
                        id="userEmail"
                        onChange={handleEmail}
-                       className=""/>
+                       className="bg-stone-300 border-solid rounded-md px-1"/>
             </div>
 
-            <div className="">
-                <label htmlFor="userPassword" className="">
+            <div className="flex flex-row">
+                <label htmlFor="userPassword" 
+                       className="flex flex-row">
                     <Lock/>
                     Digite a sua senha:
                 </label>
@@ -76,12 +77,12 @@ export function UserLogin(){
                        name="userPassword"
                        id="userPassword"
                        onChange={handlePassword}
-                       className=""/>:
+                       className="bg-stone-300 border-solid rounded-md px-1"/>:
                 <input type="password"
                        name="userPassword" 
                        id="userPassword"
                        onChange={handlePassword}
-                       className=""/>}
+                       className="bg-stone-300 border-solid rounded-md px-1"/>}
                     
                 <button type="button" className="" onClick={isShowPassword}>
                     {showPasswourd ?
