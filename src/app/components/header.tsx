@@ -1,28 +1,23 @@
 "use client";
 import { useState } from "react";
 import "tailwindcss/tailwind.css";
-import { UserLogin } from "./user/userLogin";
-import { UserSignIn } from "./user/userSignIn";
+import { useRouter } from "next/navigation";
 import { LogIn, UserCircle2, Settings } from "lucide-react";
 
 export function Header(){
-    const [userLogin, setUserLogin] = useState<boolean>(false);
-    
-    function isUserSignIn(){
-        if(userLogin){
-            setUserLogin(false);
-        }
+    const router = useRouter();
+
+    function handleUserSignIn(){
+        router.push("/login");
     }
 
     function isUserLogin(){
-        if(!userLogin){
-            setUserLogin(true);
-        }
+        router.push("/register");
     }
 
     return(
         <div className="">
-            <button type="button" className="" onClick={isUserSignIn}>
+            <button type="button" className="" onClick={handleUserSignIn}>
                 <UserCircle2/>
                 Criar conta                
             </button>
