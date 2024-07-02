@@ -1,7 +1,8 @@
 "use client";
 import axios from "axios";
-import { ChangeEvent, useState } from "react";
 import "tailwindcss/tailwind.css";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, useState } from "react";
 import { Slide, toast } from "react-toastify";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
@@ -44,8 +45,13 @@ export function UserLogin(){
         }
     }
 
+    function handleUserSignIn(){
+        const router = useRouter();
+        router.push("/register");
+    }
+
     return(
-        <form className="">
+        <form className="flex flex-col ">
             <div className="">
                 <label htmlFor="userEmail" 
                        className="">
@@ -84,6 +90,10 @@ export function UserLogin(){
                 </button>
             </div>
             
+            <div className="flex flex-col">
+                <button type="button" className="">Fazer o login</button>
+                <button type="button" className="" onClick={handleUserSignIn}>Criar conta</button>
+            </div>
         </form>
     )
 }
