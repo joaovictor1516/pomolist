@@ -6,8 +6,6 @@ import { ChangeEvent, useState } from "react";
 import { Slide, toast } from "react-toastify";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
-import { UserElement } from "@/src/interfaces/interfaces";
-
 export function UserLogin(){
   const [showPasswourd, setShowPassword] = useState<boolean>(false);
   const [userPassword, setUserPasswprd] = useState<string>("");
@@ -15,7 +13,20 @@ export function UserLogin(){
   
   async function login(){
         try {
-          await axios.get("/user/api");
+          await axios.post("/login/login", {
+            userEmail,
+            userPassword
+          });
+
+          toast.success("Login efetuado com sucesso.", {
+            hideProgressBar: true,
+            position: "top-right",
+            transition: Slide,
+            autoClose: 500,
+            closeOnClick: true,
+            pauseOnHover: true
+          });
+          
         } catch (error) {
           
         }
@@ -92,7 +103,7 @@ export function UserLogin(){
             </div>
             
             <div className="flex flex-col">
-                <button type="button" className="">Fazer o login</button>
+                <button type="button" className="" onClick={login}>Fazer o login</button>
                 <button type="button" className="" onClick={handleUserSignIn}>Criar conta</button>
             </div>
         </form>
