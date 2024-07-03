@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
-import { ChangeEvent, useState } from "react";
 import "tailwindcss/tailwind.css";
+import { ChangeEvent, useState } from "react";
 import { Slide, toast } from "react-toastify";
 import { UserCircle2, Mail, Lock, Eye, EyeOff } from "lucide-react";
 
@@ -20,7 +20,7 @@ export function UserSignIn(){
     }
 
     function creatCount(){
-        
+        axios.post("/user/api");
     }
 
     function handleUserPassword(value: ChangeEvent<HTMLInputElement>){
@@ -100,7 +100,32 @@ export function UserSignIn(){
                 </button>
             </div>
 
-            <button type="button" className="">Criar conta</button>
+            <div className="">
+                <label htmlFor="userPassword" className="">
+                    <Lock/>
+                    Confirme a sua senha:
+                </label>
+
+                {showPasswourd ?
+                <input type="text" 
+                       name="userPassword" 
+                       id="userPassword"
+                       onChange={handleUserPassword}
+                       className=""/>:
+                <input type="password" 
+                       name="userPassword" 
+                       id="userPassword"
+                       onChange={handleUserPassword}
+                       className=""/>}
+                    
+                <button type="button" className="" onClick={isShowPassword}>
+                    {showPasswourd ?
+                    <EyeOff/>:
+                    <Eye/>}
+                </button>
+            </div>
+
+            <button type="button" className="" onClick={creatCount}>Criar conta</button>
         </form>
     )
 }
