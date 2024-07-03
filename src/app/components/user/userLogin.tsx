@@ -28,7 +28,14 @@ export function UserLogin(){
           });
           
         } catch (error) {
-          
+          toast.error("Falha ao efetuar o login", {
+            hideProgressBar: true,
+            position: "top-right",
+            transition: Slide,
+            autoClose: 500,
+            closeOnClick: true,
+            pauseOnHover: true
+          });
         }
     }
 
