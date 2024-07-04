@@ -5,8 +5,8 @@ export const taskSchema = z.object({
     title: z.string().min(1, "Digite o titulo da tarefa."),
     content: z.string().min(5, "Digite o conteudo da tarefa."),
     timeTask: z.date(),
-    longTimeTask: z.date(),
-    shortTimeTask: z.date(),
+    longRestTime: z.date(),
+    shortRestTime: z.date(),
     completed: z.boolean()
 });
 
