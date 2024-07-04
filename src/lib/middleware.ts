@@ -1,7 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
 
-const secretKey = process.env.KEY_JWT ?? "";
+const secretKey: string = `${process.env.PRIVATE_KEY}`;
 
 export function authentication(handler: NextApiHandler){
     return async (request: NextApiRequest, response: NextApiResponse) => {
