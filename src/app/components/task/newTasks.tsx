@@ -1,10 +1,10 @@
 "use client";
-import { ChangeEvent, FormEvent, useState} from "react";
 import { X } from "lucide-react";
-import { Slide, toast } from "react-toastify";
-import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
+import * as Dialog from "@radix-ui/react-dialog";
+import { ChangeEvent, FormEvent, useState} from "react";
 import { NewTaskElement } from "@/src/interfaces/interfaces";
+import { toast, Slide } from "react-toastify";
 
 export function NewTask(props: NewTaskElement){
     const [textTask, setTextTask] = useState("");
@@ -42,19 +42,30 @@ export function NewTask(props: NewTaskElement){
         }
     }
 
-    function handleCreatTask(task: FormEvent){
+    async function handleCreatTask(task: FormEvent){
         task.preventDefault();
 
         if(titleTask && textTask && timeTask && shortRestTime && longRestTime){
-            props.creatTask(titleTask, textTask, timeTask, shortRestTime, longRestTime);
-            toast.success("Tarefa criada com sucesso.", {
-                position: "top-right",
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                transition: Slide,
-                autoClose: 500
-            });
+            try{
+                props.creatTask(titleTask, textTask, timeTask, shortRestTime, longRestTime);
+                toast.success("Tarefa criada com sucesso.", {
+                    position: "top-right",
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    transition: Slide,
+                    autoClose: 500
+                });
+            } catch(error){
+                toast.success("Falha na criação da tarefa.", {
+                    position: "top-right",
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    transition: Slide,
+                    autoClose: 500
+                });
+            }
         } 
     }
 
@@ -96,15 +107,15 @@ export function NewTask(props: NewTaskElement){
                             
                             <p className="">Tempo de duração:</p>
                             
-                            <input type="time" name="taskTime" id="taskTime" className="" onChange={(event) => handleTimeTask(event, setTimeTask)}/>
+                            <input type="text" name="taskTime" id="taskTime" className="" onChange={(event) => handleTimeTask(event, setTimeTask)}/>
                             
                             <p className="">Tempo curto de descanso:</p>
                             
-                            <input type="time" name="shortRestTime" id="shortRestTime" className="" value={"5:00"} onChange={(event) => handleTimeTask(event, setShortRestTime)}/>
+                            <input type="text" name="shortRestTime" id="shortRestTime" className="" value={"5:00"} onChange={(event) => handleTimeTask(event, setShortRestTime)}/>
                             
                             <p className="">Tempo longo de descanso:</p>
                             
-                            <input type="time" name="longRestTime" id="longRestTime" className="" value={"10:00"} onChange={(event) => handleTimeTask(event, setLongRestTime)}/>
+                            <input type="text" name="longRestTime" id="longRestTime" className="" value={"10:00"} onChange={(event) => handleTimeTask(event, setLongRestTime)}/>
                             
                             <input type="submit" value="Criar task"/>
                         </form>
