@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
@@ -24,11 +25,20 @@ export function Task(props: TaskElement){
     };
 
     async function updateTask(){
-        
+        await axios.post("api/tasks/update", {
+            id: props.id,
+            title: props.title,
+            content: props.content,
+            timeTask: props.timeTask,
+            longRestTime: props.longRestTime,
+            shortRestTime: props.shortRestTime
+        });
     };
 
     async function removeTask(){
-
+        await axios.post("api/tasks/delete", {
+            id: props.id
+        });
     };
 
     return(
