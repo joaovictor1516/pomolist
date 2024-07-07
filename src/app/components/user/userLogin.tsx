@@ -12,10 +12,10 @@ export function UserLogin(){
   const [userEmail, setUserEmail] = useState<string>("");
   
   async function login(){
-        try {
-          await axios.post("/login/login", {
-            userEmail,
-            userPassword
+        try{
+          await axios.post("login/api", {
+            email: userEmail,
+            password: userPassword
           });
 
           toast.success("Login efetuado com sucesso.", {
@@ -27,7 +27,7 @@ export function UserLogin(){
             pauseOnHover: true
           });
           
-        } catch (error) {
+        } catch (error){
           toast.error("Falha ao efetuar o login", {
             hideProgressBar: true,
             position: "top-right",
