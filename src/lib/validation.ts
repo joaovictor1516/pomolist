@@ -10,11 +10,15 @@ export const taskSchema = z.object({
     completed: z.boolean()
 });
 
+export type TaskTypeSchema = z.infer<typeof taskSchema>;
+
 export const todoListSchema = z.object({
     id: z.number(),
     completed: z.boolean(),
     tasks: z.array(taskSchema)
 });
+
+export type TodoListTypeSchema = z.infer<typeof todoListSchema>;
 
 export const userSchema = z.object({
     id: z.string().uuid(),
@@ -24,3 +28,5 @@ export const userSchema = z.object({
     tasks: z.array(taskSchema).nullable(),
     todoLists: z.array(todoListSchema).nullable()
 });
+
+export type UserTypeSchema = z.infer<typeof userSchema>;
