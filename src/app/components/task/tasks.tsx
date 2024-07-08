@@ -1,37 +1,92 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import "tailwindcss/tailwind.css";
 import { TaskElement } from "@/src/interfaces/interfaces";
 
-export function Task(props: TaskElement){
+export function Task(props: Readonly<TaskElement>){
+    const [newTimeTask, setNewTimetTask] = useState("");
+    const [newTitleTask, setNewTitleTask] = useState("");
+    const [newContentTask, setNewContentTask] = useState("");
+    const [newRestLongTime, setNewRestLongTime] = useState("");
+    const [newRestShortTime, setNewRestShortTime] = useState("");
 
-    const focusTime = (time: Date) => {
-        const taskTime = new Date();
-        taskTime.setMinutes(0);
-        if(time.getMinutes() === taskTime.getMinutes()){}
-    };
-    
-    let timeStack: string | undefined = undefined;
+    let timeTask: string | undefined = undefined;
     let longRestTime: string | undefined = undefined;
     let shortRestTime: string | undefined = undefined;
 
     if(props.timeTask && props.longRestTime && props.longRestTime){
-        timeStack = props.timeTask.toLocaleDateString("pt-BR");
+        timeTask = props.timeTask.toLocaleDateString("pt-BR");
         longRestTime = props.longRestTime.toLocaleDateString("pt-BR");
         shortRestTime = props.shortRestTime.toLocaleDateString("pt-BR");
     };
 
+    function handleNewTitle(text: ChangeEvent<HTMLInputElement>){
+        const title = text.target.value;
+
+        if(title !== ""){
+            setNewTitleTask(title);
+        } else{
+            setNewTimetTask(props.title);
+        }
+    }
+
+    function handleNewTaskContent(text: ChangeEvent<HTMLTextAreaElement>){
+        const content = text.target.value;
+
+        if(content !== ""){
+            setNewContentTask(content);
+        } else{
+            setNewContentTask(props.content);
+        }
+    }
+
+    function handleNewTimeTask(text: ChangeEvent<HTMLInputElement>){
+        const newTimeTaskContent = text.target.value;
+
+        if(newTimeTaskContent !== ""){
+            setNewTimetTask(newTimeTaskContent);
+        } else{
+            if(timeTask !== undefined){
+                setNewTimetTask(timeTask);
+            }
+        }
+    }
+
+    function handleNewShortRestTime(text: ChangeEvent<HTMLInputElement>){
+        const newShortRestTimeContent = text.target.value;
+
+        if(newShortRestTimeContent !== ""){
+            setNewRestShortTime(newShortRestTimeContent);
+        } else{
+            if(shortRestTime !== undefined){
+                setNewRestShortTime(shortRestTime);
+            }
+        }
+    }
+
+    function handleNewLongRestTime(text: ChangeEvent<HTMLInputElement>){
+        const newLongRestTimeContent = text.target.value;
+
+        if(newLongRestTimeContent !== ""){
+            setNewRestLongTime(newLongRestTimeContent);
+        } else{
+            if(longRestTime !== undefined){
+                setNewRestLongTime(longRestTime);
+            }
+        }
+    }
+
     async function updateTask(){
         await axios.post("api/tasks/update", {
             id: props.id,
-            title: props.title,
-            content: props.content,
-            timeTask: props.timeTask,
-            longRestTime: props.longRestTime,
-            shortRestTime: props.shortRestTime
+            title: newTitleTask,
+            content: newContentTask,
+            timeTask: newTimeTask,
+            longRestTime: newRestLongTime,
+            shortRestTime: newRestShortTime
         });
     };
 
@@ -47,16 +102,19 @@ export function Task(props: TaskElement){
                 <div className="">
                     <div className="">
                         <span className="">{props.title}</span>
-                        <p className="">{props.content}</p>                        
+                        <p className="">{props.content}</p>      
                     </div>
+
                     <div className="">
-                        <p className="">Tempo da atividade:</p>
-                        <p>{timeStack}</p>
+                        <p className="">Tempo da atividade: </p>
+                        <p className="">{timeTask}</p>
                     </div>
+
                     <div className="">
                         <p className="">Tempo de descanso curto:</p>
-                        <p>{shortRestTime}</p>
+                        <p className="">{shortRestTime}</p>
                     </div>
+
                     <div className="">
                         <p className="">Tempo de descanso longo:</p>
                         <p className="">{longRestTime}</p>
@@ -75,18 +133,46 @@ export function Task(props: TaskElement){
 
                     <div className="">
                         <form action="" className="">
-                            <span className="">Titulo:</span>
-                            <input type="text" id="taskTitle" className="" value={props.title}/>
-                            <span className="">Tarefa:</span>
-                            <textarea name="taskContent" id="taskContent" className="" value={props.content}/>
+                            <label htmlFor="taskTitle" className="">Titulo:</label>
+                            <input type="text" 
+                                id="taskTitle" 
+                                className="" 
+                                value={props.title}
+                                onChange={handleNewTitle}/>
+                            
+                            <label htmlFor="taskContent" className="">Tarefa:</label>
+                            <textarea name="taskContent" 
+                                id="taskContent" 
+                                className="" 
+                                value={props.content}
+                                onChange={handleNewTaskContent}/>
+                            
                             <div className="">
-                                <span className="">Tempo de duração:</span>
-                                <input type="time" name="timeStack" id="timeStack" className=""/>
-                                <span className="">Tempo de descanso curto:</span>
-                                <input type="time" name="shortRestTime" id="shortRestTime" className=""/>
-                                <span className="">Tempo de descanso longo:</span>
-                                <input type="time" name="longRestTime" id="longRestTime" className=""/>
+                                <label htmlFor="timeTask" className="">Tempo de duração: </label>
+                                <input type="text" 
+                                    name="timeTask" 
+                                    id="timeTask" 
+                                    className="" 
+                                    value={timeTask}
+                                    onChange={handleNewTimeTask}/>
+                                
+                                <label htmlFor="shortRestTime" className="">Tempo de descanso curto: </label>
+                                <input type="text" 
+                                    name="shortRestTime"
+                                    id="shortRestTime"
+                                    className=""
+                                    value={shortRestTime}
+                                    onChange={handleNewShortRestTime}/>
+                                
+                                <label htmlFor="longRestTime" className="">Tempo de descanso longo: </label>
+                                <input type="text" 
+                                    name="longRestTime" 
+                                    id="longRestTime" 
+                                    className=""
+                                    value={longRestTime}
+                                    onChange={handleNewLongRestTime}/>
                             </div>
+
                             <div className="">
                                 <input type="button" value="Editar" onClick={() => updateTask()}/>
                                 <input type="button" value="Deletar" onClick={() => removeTask()}/>
