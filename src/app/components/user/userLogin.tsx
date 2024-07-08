@@ -8,7 +8,7 @@ import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 export function UserLogin(){
   const [showPasswourd, setShowPassword] = useState<boolean>(false);
-  const [userPassword, setUserPasswprd] = useState<string>("");
+  const [userPassword, setUserPassword] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
   
   async function login(){
@@ -59,13 +59,13 @@ export function UserLogin(){
         const text = value.target.value;
 
         if(text !== ""){
-            setUserPasswprd(text);
+            setUserPassword(text);
         }
     }
 
     function handleUserSignIn(){
-        const router = useRouter();
-        router.push("/register");
+        const Router = useRouter();
+        Router.push("/register");
     }
 
     return(
