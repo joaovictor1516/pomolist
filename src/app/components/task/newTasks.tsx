@@ -4,9 +4,8 @@ import "tailwindcss/tailwind.css";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ChangeEvent, FormEvent, useState} from "react";
 import { NewTaskElement } from "@/src/interfaces/interfaces";
-import { toast, Slide } from "react-toastify";
 
-export function NewTask(props: NewTaskElement){
+export function NewTask(props: Readonly<NewTaskElement>){
     const [textTask, setTextTask] = useState("");
     const [titleTask, setTitleTask] = useState("");
     const [timeTask, setTimeTask] = useState<Date | null>(null);
@@ -42,30 +41,11 @@ export function NewTask(props: NewTaskElement){
         }
     }
 
-    async function handleCreatTask(task: FormEvent){
+    function handleCreatTask(task: FormEvent){
         task.preventDefault();
 
         if(titleTask && textTask && timeTask && shortRestTime && longRestTime){
-            try{
-                props.creatTask(titleTask, textTask, timeTask, shortRestTime, longRestTime);
-                toast.success("Tarefa criada com sucesso.", {
-                    position: "top-right",
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    transition: Slide,
-                    autoClose: 500
-                });
-            } catch(error){
-                toast.success("Falha na criação da tarefa.", {
-                    position: "top-right",
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    transition: Slide,
-                    autoClose: 500
-                });
-            }
+            props.creatTask(titleTask, textTask, timeTask, shortRestTime, longRestTime);
         } 
     }
 
