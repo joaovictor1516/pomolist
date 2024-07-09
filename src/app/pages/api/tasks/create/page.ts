@@ -1,11 +1,11 @@
 import { NextApiResponse, NextApiRequest } from "next";
-import { prisma } from "../../../../lib/prisma";
+import { prisma } from "../../../../../lib/prisma";
 
 export async function CreateTask(request: NextApiRequest, response: NextApiResponse){
     const {title, content, timeTask, shortRestTime, longRestTime} = request.body;
 
     try{
-        const task = await prisma.tasks.create({
+        const task = await prisma.task.create({
             data: {title, content, timeTask, shortRestTime, longRestTime}
         });
         response.status(200).json(task);
