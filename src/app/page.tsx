@@ -37,7 +37,7 @@ export default function Principal(props: Readonly<TaskElement>){
 
   const creatTask = async (title: string, content: string, timeTask: Date, shortRestTime: Date, longRestTime: Date) => {
     try{
-      await axios.post("/task/creat", 
+      await axios.post("/tasks/create", 
         { title,
           content,
           timeTask,
