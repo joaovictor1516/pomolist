@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import axios from "axios";
 import { X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -7,7 +7,7 @@ import "tailwindcss/tailwind.css";
 import { TaskElement } from "@/src/interfaces/interfaces";
 
 export function Task(props: Readonly<TaskElement>){
-    const [newTimeTask, setNewTimetTask] = useState("");
+    const [newTimeTask, setNewTimeTask] = useState("");
     const [newTitleTask, setNewTitleTask] = useState("");
     const [newContentTask, setNewContentTask] = useState("");
     const [newRestLongTime, setNewRestLongTime] = useState("");
@@ -29,7 +29,7 @@ export function Task(props: Readonly<TaskElement>){
         if(title !== ""){
             setNewTitleTask(title);
         } else{
-            setNewTimetTask(props.title);
+            setNewTimeTask(props.title);
         }
     }
 
@@ -47,11 +47,9 @@ export function Task(props: Readonly<TaskElement>){
         const newTimeTaskContent = text.target.value;
 
         if(newTimeTaskContent !== ""){
-            setNewTimetTask(newTimeTaskContent);
-        } else{
-            if(timeTask !== undefined){
-                setNewTimetTask(timeTask);
-            }
+            setNewTimeTask(newTimeTaskContent);
+        } else if(timeTask !== undefined){
+            setNewTimeTask(timeTask);
         }
     }
 
@@ -60,10 +58,8 @@ export function Task(props: Readonly<TaskElement>){
 
         if(newShortRestTimeContent !== ""){
             setNewRestShortTime(newShortRestTimeContent);
-        } else{
-            if(shortRestTime !== undefined){
-                setNewRestShortTime(shortRestTime);
-            }
+        } else if(shortRestTime !== undefined){
+            setNewRestShortTime(shortRestTime);
         }
     }
 
@@ -72,10 +68,8 @@ export function Task(props: Readonly<TaskElement>){
 
         if(newLongRestTimeContent !== ""){
             setNewRestLongTime(newLongRestTimeContent);
-        } else{
-            if(longRestTime !== undefined){
-                setNewRestLongTime(longRestTime);
-            }
+        } else if(longRestTime !== undefined){
+            setNewRestLongTime(longRestTime);
         }
     }
 
