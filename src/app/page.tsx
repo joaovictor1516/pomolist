@@ -2,7 +2,7 @@
 import axios from "axios";
 import "tailwindcss/tailwind.css";
 import { useEffect, useState } from "react";
-import {Slide, ToastContainer, toast} from "react-toastify";
+import { toast, Toaster} from "sonner";
 
 import { Clock } from "./components/clock";
 import { Header } from "./components/header";
@@ -44,24 +44,10 @@ export default function Principal(props: Readonly<TaskElement>){
           shortRestTime,
           longRestTime
         });
-        toast.success("Tarefa criada com sucesso.", {
-          position: "top-right",
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          transition: Slide,
-          autoClose: 500
-      });
+        toast.success("Tarefa criada com sucesso.");
     } catch(error){
       console.error(`Erro ao criar a tarefa, erro: ${error}`);
-      toast.success("Falha na criação da tarefa.", {
-          position: "top-right",
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          transition: Slide,
-          autoClose: 500
-      });
+      toast.error("Falha na criação da tarefa.");
     }
 
     setTasks([props, ...tasks]);
@@ -159,14 +145,7 @@ export default function Principal(props: Readonly<TaskElement>){
               <TodoList/> :
               <p>Nenguma lista de tarefas criada.</p>}
             
-            <ToastContainer
-              hideProgressBar={true}
-              position="top-right"
-              transition={Slide}
-              autoClose={500}
-              closeOnClick
-              pauseOnHover
-            />
+            <Toaster richColors/>
         </div>
       </body>
     </>  
