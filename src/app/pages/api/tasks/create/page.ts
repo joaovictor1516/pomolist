@@ -1,3 +1,4 @@
+import { authentication } from "../../../../../lib/middleware"
 import { NextApiResponse, NextApiRequest } from "next";
 import { prisma } from "../../../../../lib/prisma";
 

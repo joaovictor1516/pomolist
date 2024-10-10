@@ -3,7 +3,7 @@ import { prisma } from "../../../../lib/prisma";
 
 export async function ShowTasks(request: NextApiRequest, response: NextApiResponse){
     try{
-        const tasks = await prisma.tasks.findMany();
+        const tasks = await prisma.task.findMany();
         response.status(200).json(tasks);
     }
     catch (error){
